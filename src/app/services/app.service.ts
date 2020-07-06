@@ -9,18 +9,19 @@ class AppService {
     console.log({ nodeEnv });
     puppeteer
       .launch({
-        headless: true,
+        headless: false,
         defaultViewport: null,
         args: [
           '--enable-usermedia-screen-capturing',
           '--allow-http-screen-capture',
           '--auto-select-desktop-capture-source=pickme',
+          '--enable-experimental-web-platform-features',
           '--disable-setuid-sandbox',
           '--disable-web-security',
           '--use-gl=egl',
           '--no-sandbox',
           '--disable-setuid-sandbox',
-          // '--start-maximized',
+          '--start-maximized',
         ],
       })
       .then((browser) => {
@@ -34,7 +35,6 @@ class AppService {
   public async record(timeout: number, url: string) {
     const page: Page = await this.browser.newPage();
     console.log({ url, timeout });
-
     page.setViewport({
       height: 1920,
       width: 1080,
@@ -82,7 +82,7 @@ class AppService {
         setTimeout(() => {
           recorder.stop();
           console.log(`Stopping Recording`);
-        }, timeout);
+        }, 10000);
       });
 
       console.log(`Initialized window navigator success`);

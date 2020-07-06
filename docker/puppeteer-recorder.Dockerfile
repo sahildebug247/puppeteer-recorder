@@ -24,5 +24,5 @@ RUN yarn install
 COPY  . .
 EXPOSE 3002
 RUN npm run build
-CMD ["xvfb", "node", "dist/main.js" ]
+CMD ["xvfb-run", "node", "dist/main.js" ]
     
