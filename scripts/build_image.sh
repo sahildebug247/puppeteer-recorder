@@ -1,0 +1,1 @@
+docker build -t puppeteer-recorder -f ./docker/puppeteer-recorder.Dockerfile .
